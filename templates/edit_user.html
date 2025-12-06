@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa Thông Tin Người Dùng</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #e9f7fe;
+        }
+        .edit-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="edit-container">
+        <h1>Sửa Thông Tin Người Dùng</h1>
+        
+        <form action="{{ url_for('edit_user', user_id=user.user_id) }}" method="POST">
+            <div class="form-group">
+                <label for="name">Tên</label>
+                <input type="text" name="name" value="{{ user.name }}" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" value="{{ user.email }}" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <input type="password" name="password" placeholder="Nhập mật khẩu mới (để trống nếu không thay đổi)" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Cập Nhật</button>
+        </form>
+        
+        <a href="{{ url_for('admin') }}" class="btn btn-secondary mt-3">Quay lại danh sách người dùng</a>
+    </div>
+</body>
+</html>

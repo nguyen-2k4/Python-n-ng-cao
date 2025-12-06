@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Danh Sách Laptop{% endblock %}
+
+{% block content %}
+    <h1 class="text-center mb-4">Danh Sách Laptop</h1>
+    <div class="row" style="margin: 0px 30px 0px 30px;">
+        {% for laptop in laptops %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card product-card">
+                    <img src="{{ laptop.image }}" alt="{{ laptop.name }}" class="card-img-top">
+                    <div class="product-info">
+                        <p class="product-title">{{ laptop.name }}</p>
+                        <p>Màn hình: {{ laptop.screen }}</p>
+                        <p>RAM: {{ laptop.ram }}</p>
+                        <p>ROM: {{ laptop.rom }}</p>
+                        <p>Chip: {{ laptop.chip }}</p>
+                        <p>Card: {{ laptop.card }}</p>
+                        <p>Giá: {{ laptop.price }}₫</p>
+                        <form action="{{ url_for('add_to_cart') }}" method="post">
+                            <input type="hidden" name="product_name" value="{{ laptop.name }}">
+                            <input type="hidden" name="product_image" value="{{ laptop.image }}">
+                            <input type="hidden" name="product_price" value="{{ laptop.price }}">
+                        
+                            <div class="d-flex align-items-center mt-2">
+                                <button type="submit" class="btn btn-primary" style="flex-grow: 1;">Thêm vào giỏ hàng</button>
+                                <input type="number" name="quantity" value="1" min="1" class="form-control me-2" style="width: 80px;">
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
